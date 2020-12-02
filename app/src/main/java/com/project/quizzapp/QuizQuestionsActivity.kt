@@ -296,30 +296,39 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         when(answer){
                 1 -> {
                     val tv_option_one = findViewById<TextView>(R.id.tv_option_one)
+                    changeTextColorAndTypeface(tv_option_one)
                     tv_option_one.background = ContextCompat.getDrawable(
                             this,
                             drawableView)
                 }
                 2 -> {
                     val tv_option_two = findViewById<TextView>(R.id.tv_option_two)
+                    changeTextColorAndTypeface(tv_option_two)
                     tv_option_two.background = ContextCompat.getDrawable(
                             this,
                             drawableView)
                 }
                 3 -> {
                     val tv_option_three = findViewById<TextView>(R.id.tv_option_three)
+                    changeTextColorAndTypeface(tv_option_three)
                     tv_option_three.background = ContextCompat.getDrawable(
                             this,
                             drawableView)
                 }
                 4 -> {
                     val tv_option_four = findViewById<TextView>(R.id.tv_option_four)
+                    changeTextColorAndTypeface(tv_option_four)
                     tv_option_four.background = ContextCompat.getDrawable(
                             this,
                             drawableView)
                 }
 
         }
+    }
+
+    private fun changeTextColorAndTypeface(tv: TextView){
+        tv.setTextColor(Color.parseColor("#363A43"))
+        tv.setTypeface(tv.typeface, Typeface.BOLD)
     }
 
     private fun selectedOptionView(tv: TextView, selectedOptionNumber : Int){
@@ -332,9 +341,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionsView()
         mSelectedOptionPosition = selectedOptionNumber
 
-
-        tv.setTextColor(Color.parseColor("#363A43"))
-        tv.setTypeface(tv.typeface, Typeface.BOLD)
+        changeTextColorAndTypeface(tv)
         tv.background = ContextCompat.getDrawable(
                 this,
                 R.drawable.default_option_border_background_selected
