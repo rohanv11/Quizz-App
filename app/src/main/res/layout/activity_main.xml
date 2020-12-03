@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome Main Branch"
+                android:text="Welcome"
                 android:textSize="35dp"
                 android:textColor="#363A43 "
                 android:textStyle="bold"
