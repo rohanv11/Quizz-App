@@ -83,6 +83,21 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                android:id="@+id/cb_randomizeQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="make quiz random"
+                android:textAlignment="textStart"
+                android:textStyle="italic"
+                android:textColor="#7A8089"
+                android:padding="10dp"
+                android:textSize="15dp"
+                android:checked="true"
+
+
+                />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnStart"
                 android:layout_width="match_parent"
