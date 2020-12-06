@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.textfield.TextInputEditText
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         // Its deprecated but it still works
         //Toast.makeText(this, "Opened the app!", Toast.LENGTH_SHORT).show() // just for checking onCreate func
 
+
         val btnStart = findViewById<Button>(R.id.btnStart)
         btnStart.setOnClickListener {
             val et_enterName = findViewById<TextInputEditText>(R.id.et_enterName)
@@ -45,7 +47,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
             else{
                 var intent = Intent(this, QuizQuestionsActivity::class.java)
+                val cb_randomizeQuiz = findViewById<CheckBox>(R.id.cb_randomizeQuiz)
+
                 intent.putExtra(Constants.USER_NAME, et_enterName.text.toString())
+                intent.putExtra(Constants.RANDOM, cb_randomizeQuiz.isChecked.toString())
+
                 startActivity(intent)
                 finish() //finish the current activity(MainActivity)
             }
