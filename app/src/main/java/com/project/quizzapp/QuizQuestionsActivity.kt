@@ -35,6 +35,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCorrectAnswers: Int = 0
     private var valueSelected = false
     private var mUsername : String? = null
+    private var random_quiz_status : Boolean = false
     private var shuffledArrayIndices : IntArray? = null
 
     //private var answered = false
@@ -59,9 +60,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         mUsername = intent.getStringExtra(Constants.USER_NAME)
 
+        random_quiz_status = intent.getStringExtra(Constants.RANDOM).toBoolean()
+
         mQuestionsList = Constants.getQuestions()
 
-        shuffleQuestions(mQuestionsList!!.size)
+        shuffleQuestions(mQuestionsList!!.size, random_quiz_status)
 
         setQuestion()
 
@@ -80,9 +83,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
-    private fun shuffleQuestions(size: Int){
+    private fun shuffleQuestions(size: Int, enabler: Boolean){
         shuffledArrayIndices = IntArray(size) {i->i+1} //size = 5 Array = {1,2,3,4,5}
-        shuffledArrayIndices!!.shuffle()
+        if(enabler){
+            shuffledArrayIndices!!.shuffle()
+        }
     }
 
     private fun getShuffledQuestion(id: Int) : Question{
