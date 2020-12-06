@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import java.lang.Exception
 import android.content.Intent
+import java.util.Collections.shuffle
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     /*
@@ -34,6 +35,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCorrectAnswers: Int = 0
     private var valueSelected = false
     private var mUsername : String? = null
+    private var shuffledArrayIndices : IntArray? = null
 
     //private var answered = false
     //not reqd, used for earlier implementation
@@ -59,6 +61,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         mQuestionsList = Constants.getQuestions()
 
+        shuffleQuestions(mQuestionsList!!.size)
+
         setQuestion()
 
         val tv_option_one = findViewById<TextView>(R.id.tv_option_one)
@@ -76,6 +80,21 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         }
 
+    private fun shuffleQuestions(size: Int){
+        shuffledArrayIndices = IntArray(size) {i->i+1} //size = 5 Array = {1,2,3,4,5}
+        shuffledArrayIndices!!.shuffle()
+    }
+
+    private fun getShuffledQuestion(id: Int) : Question{
+        /*
+        id begins with 0...
+        shuffledArrayIndices has values which begin with 1...(thats why -1)
+         */
+        return mQuestionsList!![ shuffledArrayIndices!![id] - 1 ]
+
+    }
+
+
     private fun setQuestion(){
         /*
         This function sets all the question related data on the screen:
@@ -85,7 +104,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         options etc
          */
 
-        val question = mQuestionsList!![mCurrentPosition-1]
+        //val question = mQuestionsList!![mCurrentPosition-1]
+        val question = getShuffledQuestion(mCurrentPosition-1)
 
         defaultOptionsView()
         val btnSubmit = findViewById<Button>(R.id.btnSubmit)
@@ -102,7 +122,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_progress.text = (mCurrentPosition).toString() + "/" + progressBar.max
 
         val tv_question = findViewById<TextView>(R.id.tv_question)
-        tv_question.text = question.id.toString() + ". " + question.question
+        //tv_question.text = question.id.toString() + ". " + question.question
+        tv_question.text = (mCurrentPosition).toString() + ". " + question.question
 
         val iv_image = findViewById<ImageView>(R.id.iv_image)
         iv_image.setImageResource(question.image)
@@ -221,7 +242,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     else {
                         try{
-                            val question = mQuestionsList?.get(mCurrentPosition-1)
+                            //val question = mQuestionsList?.get(mCurrentPosition-1)
+                            val question = getShuffledQuestion(mCurrentPosition-1)
                             if(question!!.correctAnswer != mSelectedOptionPosition){
                                 answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_background)
                             }
