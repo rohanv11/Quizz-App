@@ -34,6 +34,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
+        This is for:
+        if a user comes back from QuizQuestions activity by pressing back and interuptinng the quiz
+         */
+        if (intent.getStringExtra(Constants.USER_NAME) != null){
+            val et_enterName = findViewById<TextInputEditText>(R.id.et_enterName).also {
+                it.setText(intent.getStringExtra(Constants.USER_NAME))
+            }
+        }
+
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         // Its deprecated but it still works
         //Toast.makeText(this, "Opened the app!", Toast.LENGTH_SHORT).show() // just for checking onCreate func
@@ -58,5 +68,9 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

@@ -1,5 +1,6 @@
 package com.project.quizzapp
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
@@ -12,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import java.lang.Exception
 import android.content.Intent
+import androidx.appcompat.app.AlertDialog
+import com.google.android.material.textfield.TextInputEditText
 import java.util.Collections.shuffle
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
@@ -82,6 +85,43 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
 
         }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        //Toast.makeText(this, "back pressed!!!!!!", Toast.LENGTH_SHORT).show()
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Alert!")
+        builder.setMessage("Do you want to exit the quiz and return to mainscreen?")
+        val dialogClickListener = DialogInterface.OnClickListener{
+            _,which ->
+            when(which){
+                DialogInterface.BUTTON_POSITIVE -> {
+                    //Toast.makeText(this, "YES", Toast.LENGTH_SHORT).show()
+
+                    startActivity(
+                            Intent(this, MainActivity::class.java)
+                                    .putExtra(Constants.USER_NAME, mUsername),
+                    )
+                    finish()
+                }
+                DialogInterface.BUTTON_NEGATIVE -> {
+                    //Toast.makeText(this, "NO", Toast.LENGTH_SHORT).show()
+                }
+                /* Button neutral is not really required here
+                DialogInterface.BUTTON_NEUTRAL -> {
+                    //Toast.makeText(this, "OKKK", Toast.LENGTH_SHORT).show()
+                }
+
+                 */
+            }
+        }
+        builder.setPositiveButton("YES",dialogClickListener)
+        builder.setNegativeButton("NO",dialogClickListener)
+        //builder.setNeutralButton("CANCEL",dialogClickListener)
+
+        builder.create().show()
+
+    }
 
     private fun shuffleQuestions(size: Int, enabler: Boolean){
         shuffledArrayIndices = IntArray(size) {i->i+1} //size = 5 Array = {1,2,3,4,5}
@@ -240,6 +280,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                                     intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
                                     intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
                                     startActivity(intent)
+                                    finish()
 
                             }
                         }

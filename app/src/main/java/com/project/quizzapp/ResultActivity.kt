@@ -28,6 +28,8 @@ class ResultActivity : AppCompatActivity() {
         // Its deprecated but it still works
 
 
+
+
         val username = intent.getStringExtra(Constants.USER_NAME)
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS,0)
@@ -41,6 +43,7 @@ class ResultActivity : AppCompatActivity() {
         val btn_finish = findViewById<Button>(R.id.btn_finish)
         btn_finish.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java)) //use back
+            finish()
             /*
             When you don't add finish(), and press back on after going to main activity
             from result activity you can still navigate back to result activity screen
@@ -56,5 +59,10 @@ class ResultActivity : AppCompatActivity() {
 //            */
 //        }
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this,MainActivity::class.java))
+        finish()
     }
 }
