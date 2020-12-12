@@ -40,6 +40,9 @@ class ResultActivity : AppCompatActivity() {
         val tv_score = findViewById<TextView>(R.id.tv_score)
         tv_score.text = "Your score is $correctAnswers/$totalQuestions"
 
+        val tv_resultMsg = findViewById<TextView>(R.id.tv_resultMsg)
+        tv_resultMsg.text = getResultMessage(correctAnswers, totalQuestions)
+
         val btn_finish = findViewById<Button>(R.id.btn_finish)
         btn_finish.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java)) //use back
@@ -58,6 +61,23 @@ class ResultActivity : AppCompatActivity() {
 //            reach main activity screen and you 'can't' access it again
 //            */
 //        }
+
+    }
+    private fun getResultMessage(correctAnswers: Int, totalQuestions: Int): String{
+        val percentage = ((1.0*correctAnswers)/totalQuestions) * 100
+        /*
+        0 - 3 :
+        4 - 7 :
+        8 - 10 :
+
+         */
+        if(percentage < 35){
+            return "You can do better!!"
+        }
+        if(percentage in 35.0..70.0){
+            return "You did well!!"
+        }
+        return "You did extremely awesome!!!!"
 
     }
 
