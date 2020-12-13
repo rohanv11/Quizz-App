@@ -53,8 +53,10 @@ class MainActivity : AppCompatActivity() {
         btnStart.setOnClickListener {
             val et_enterName = findViewById<TextInputEditText>(R.id.et_enterName)
 
-            if(et_enterName.text.toString().isEmpty())
+            if(et_enterName.text.toString().isEmpty()){
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
+                et_enterName.requestFocus()
+            }
             else{
                 var intent = Intent(this, QuizQuestionsActivity::class.java)
                 val cb_randomizeQuiz = findViewById<CheckBox>(R.id.cb_randomizeQuiz)
