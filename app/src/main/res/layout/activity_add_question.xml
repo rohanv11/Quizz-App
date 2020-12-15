@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".AddQuizActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+        <EditText
+            android:id="@+id/et_enterQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="ENTER QUESTION"
+            android:layout_gravity="center"
+            tools:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+
+            />
+
+        <EditText
+            android:id="@+id/et_enterOptionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Option 1"
+            android:layout_gravity="center"
+            tools:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textStyle="normal"
+
+            />
+        <EditText
+            android:id="@+id/et_enterOptionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Option 2"
+            android:layout_gravity="center"
+            tools:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textStyle="normal"
+
+            />
+        <EditText
+            android:id="@+id/et_enterOptionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Option 3"
+            android:layout_gravity="center"
+            tools:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textStyle="normal"
+
+            />
+        <EditText
+            android:id="@+id/et_enterOptionFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Option 4"
+            android:layout_gravity="center"
+            tools:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textStyle="normal"
+
+            />
+
+        <EditText
+            android:id="@+id/et_enterCorrectOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Enter correct option number"
+            android:layout_gravity="center"
+            tools:textAlignment="textStart"
+            android:textSize="20dp"
+            android:textStyle="italic|bold"
+
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+
+            android:text="Save" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelAddingQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+
+            android:text="CANCEL" />
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

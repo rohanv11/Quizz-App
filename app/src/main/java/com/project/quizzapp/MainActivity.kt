@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -17,6 +19,9 @@ class MainActivity : AppCompatActivity() {
     This class MainActivity is the entry point of app.
 
      */
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         /*
         The onCreate() function loads the main screen using the function
@@ -33,6 +38,8 @@ class MainActivity : AppCompatActivity() {
          */
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         /*
         This is for:
@@ -73,6 +80,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        finish()
+    }
+
+    fun openQuizList(view: View){
+        var intent = Intent(this, QuizzesActivity::class.java)
+        startActivity(intent)
         finish()
     }
 }

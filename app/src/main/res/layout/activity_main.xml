@@ -109,6 +109,17 @@
                 android:textColor="@color/white"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create a quiz"
+                android:gravity="center"
+                android:textColor="#7A8089"
+                android:padding="10dp"
+                android:textSize="16dp"
+                android:onClick="openQuizList"
+                />
+
 
         </LinearLayout>
 
