@@ -15,7 +15,7 @@ import java.lang.Exception
 class DisplayQuiz : AppCompatActivity(), View.OnClickListener {
 
     private var mCurrentPosition: Int = 1
-    private var mQuestionsList: ArrayList<Question>? = null
+    private var mQuestionsList: ArrayList<QuestionStructure>? = null
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
     private var valueSelected = false
@@ -39,11 +39,16 @@ class DisplayQuiz : AppCompatActivity(), View.OnClickListener {
 
         randomQuizStatus = intent.getStringExtra(Constants.RANDOM).toBoolean()
 
-        mQuestionsList = Constants.getQuestions()
+
+        mQuestionsList = MainActivity.dbHandler.getQuestions(this,intent.getStringExtra("id").toString())
 
         shuffleQuestions(mQuestionsList!!.size, randomQuizStatus)
 
+        val progressBar =findViewById<ProgressBar>(R.id.progressBar)
+        progressBar.max = mQuestionsList!!.size
+
         setQuestion()
+
 
         val tv_option_one = findViewById<TextView>(R.id.tv_option_one)
         val tv_option_two = findViewById<TextView>(R.id.tv_option_two)
@@ -104,7 +109,7 @@ class DisplayQuiz : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun getShuffledQuestion(id: Int) : Question{
+    private fun getShuffledQuestion(id: Int) : QuestionStructure{
         /*
         id begins with 0...
         shuffledArrayIndices has values which begin with 1...(thats why -1)
@@ -138,14 +143,14 @@ class DisplayQuiz : AppCompatActivity(), View.OnClickListener {
         progressBar.progress = mCurrentPosition
 
         val tv_progress = findViewById<TextView>(R.id.tv_progress)
-        tv_progress.text = (mCurrentPosition).toString() + "/" + progressBar.max
+        tv_progress.text = (mCurrentPosition).toString() + "/" + mQuestionsList?.size.toString()
 
         val tv_question = findViewById<TextView>(R.id.tv_question)
         //tv_question.text = question.id.toString() + ". " + question.question
         tv_question.text = (mCurrentPosition).toString() + ". " + question.question
 
-        val iv_image = findViewById<ImageView>(R.id.iv_image)
-        iv_image.setImageResource(question.image)
+        //val iv_image = findViewById<ImageView>(R.id.iv_image)
+        //iv_image.setImageResource(question.image)
 
         val tv_option_one = findViewById<TextView>(R.id.tv_option_one)
         tv_option_one.text = question.optionOne

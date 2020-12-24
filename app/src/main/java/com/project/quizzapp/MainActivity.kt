@@ -19,8 +19,9 @@ class MainActivity : AppCompatActivity() {
     This class MainActivity is the entry point of app.
 
      */
-
-
+    companion object{
+        lateinit var dbHandler: DBHandler
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         /*
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
+        dbHandler = DBHandler(this,null,null,1)
         /*
         This is for:
         if a user comes back from QuizQuestions activity by pressing back and interuptinng the quiz
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 et_enterName.requestFocus()
             }
             else{
-                var intent = Intent(this, QuizQuestionsActivity::class.java)
+                var intent = Intent(this, QuizzesActivity::class.java)
                 val cb_randomizeQuiz = findViewById<CheckBox>(R.id.cb_randomizeQuiz)
 
                 intent.putExtra(Constants.USER_NAME, et_enterName.text.toString())
@@ -84,7 +85,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openQuizList(view: View){
-        var intent = Intent(this, QuizzesActivity::class.java)
+        var intent = Intent(this, DisplayQuiz::class.java)
+
+
         startActivity(intent)
         finish()
     }

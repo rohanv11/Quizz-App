@@ -186,4 +186,9 @@ class DBHandler(context : Context, name: String?, factory: SQLiteDatabase.Cursor
         db.close()
         return result
     }
+
+    fun getQuizQuestions(quizId: Int){
+
+    }
+
 }

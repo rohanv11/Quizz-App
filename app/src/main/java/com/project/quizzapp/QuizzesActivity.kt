@@ -1,5 +1,6 @@
 package com.project.quizzapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -66,4 +67,18 @@ class QuizzesActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+    fun displayQuiz(mCtx: Context, id: Int){
+        var i = Intent(this, DisplayQuiz::class.java)
+        //Toast.makeText(this,"FAB clicked!!",Toast.LENGTH_SHORT).show()
+
+        i.putExtra(Constants.USER_NAME, intent.getStringExtra(Constants.USER_NAME))
+        i.putExtra(Constants.RANDOM, intent.getStringExtra(Constants.RANDOM))
+        i.putExtra("id",id)
+        startActivity(i)
+
+    }
+    fun configurebtn(view: View){
+        
+    }
+
 }

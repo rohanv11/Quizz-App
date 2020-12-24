@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class QuizAdapter(mCtx: Context, val quizzes: ArrayList<Quiz>) : RecyclerView.Adapter<QuizAdapter.ViewHolder>(){
     val mCtx = mCtx
+    var id : Int = 0
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var tv_quizName = itemView.findViewById<TextView>(R.id.tv_quizName)
@@ -49,12 +50,23 @@ class QuizAdapter(mCtx: Context, val quizzes: ArrayList<Quiz>) : RecyclerView.Ad
         holder.tv_questionCount.text = QuizzesActivity.dbHandler.getNumberOfQuestionsInQuiz(quiz).toString()+" Q's"
 
 
+        /*
+        holder.btnConfigureQuiz.setOnClickListener{
+            Toast.makeText(mCtx, "${quiz.quizID} clicked", Toast.LENGTH_SHORT).show()
+            this.id = quiz.quizID
+
+        }
 
 
-    fun getQuizId( position: Int): Int{
-        return quizzes[position].quizID
+         */
+
+
+
+
     }
 
+    fun getQuizId(): Int{
+        return id
     }
 }
 
